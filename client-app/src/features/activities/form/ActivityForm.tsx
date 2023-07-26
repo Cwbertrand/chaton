@@ -7,10 +7,10 @@ interface Activities {
     activity: Activity | undefined;
     closeForm: () => void;
     createOrEdit: (activity: Activity) => void;
-    // submittingLoader: boolean;
+    submittingLoader: boolean;
 }
 
-export default function ActivityForm({activity: selectedActivity, closeForm, createOrEdit}: Activities) {
+export default function ActivityForm({activity: selectedActivity, closeForm, createOrEdit, submittingLoader}: Activities) {
 
     //the initialstate will be either the selected activity or a new activity we want to create.
     // if the activity is null (??) then we'll create new data for the ids
@@ -45,7 +45,7 @@ export default function ActivityForm({activity: selectedActivity, closeForm, cre
             <Form.Input placeholder="Date" type='date' value={activity.date} name='date' onChange={handleInputChange} />
             <Form.Input placeholder="City" value={activity.city} name='city' onChange={handleInputChange} />
             <Form.Input placeholder="Venue" value={activity.venue} name='venue' onChange={handleInputChange} />
-            <Button  floated='right' positive type="submit" content="Submit" />
+            <Button loading={submittingLoader}  floated='right' positive type="submit" content="Submit" />
             <Button onClick={closeForm} floated='right' type='button' content="Cancel" />
         </Form>
     </Segment>

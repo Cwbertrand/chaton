@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Container } from 'semantic-ui-react';
 import {v4 as uuid} from 'uuid';
 
@@ -8,11 +7,15 @@ import './style.css';
 import NavBar from './NavBar';
 import { Activity } from '../models/Activity';
 import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
+import agent from '../../app/api/agentAxios';
+import LoadingComponent from './LoadingComponent';
 
 function App() {
 
   //***==================== STATES ====================*/
 
+  const [loading, setLoading] = useState(true);
+  const [submittingLoader, setSubmittingLoader] = useState(false)
   const [activities, setActivities] = useState<Activity[]>([]);
 
   //the initial state of the hook is undefined
@@ -21,13 +24,19 @@ function App() {
   //setting a state for editing an activity
   const [editMode, setEditMode] = useState(false);
 
+
+
   //***==================== EFFECTS ====================*/
 
   useEffect(() => {
-    axios.get<Activity[]>('http://localhost:5000/api/activities')
-      .then((response) => {
-        console.log(response);
-        setActivities(response.data)
+    agent.Activities.list().then((response) => {
+      let activities: Activity[] = [];
+      response.forEach((activity) => {
+        activity.date = activity.date.split('T')[0];
+        activities.push(activity);
+      })
+      setActivities(response);
+      setLoading(false);
       })
   }, []);
 
@@ -61,17 +70,35 @@ function App() {
   //Displaying the submitted form's data when submitted
   function handleCreateOrEditActivity(activity: Activity){
     //if we have an activity id, just update the data, if not,
-    activity.id 
-    ? setActivities([...activities.filter(x => x.id !== activity.id), activity])
-    : setActivities([...activities, {...activity, id: uuid()}]);
-    setEditMode(false);
-    setSelectedActivity(activity)
+    setSubmittingLoader(true);
+    if(activity.id){
+      agent.Activities.update(activity).then(() => {
+        setActivities([...activities.filter(x => x.id !== activity.id), activity])
+        setEditMode(false);
+        setSelectedActivity(activity);
+        setSubmittingLoader(false);
+      })
+    } else {
+      activity.id = uuid();
+      agent.Activities.create(activity).then(() => {
+        setActivities([...activities, activity]);
+        setEditMode(false);
+        setSelectedActivity(activity);
+        setSubmittingLoader(false);
+      })
+    }
   }
 
   // Handling delete activity
   function deleteActivity(id: string) {
-    setActivities([...activities.filter(x => x.id !== id)])
+    agent.Activities.delete(id).then(() => {
+      setActivities([...activities.filter(x => x.id !== id)]);
+      setSubmittingLoader(false);
+    })
   }
+
+  //Handling loading functionality when delay response
+  if(loading) return <LoadingComponent content='Loading app' />
 
   return (
     <>
@@ -89,6 +116,7 @@ function App() {
           closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
           deleteActivity={deleteActivity}
+          submittingLoader={submittingLoader}
 
         
         />
