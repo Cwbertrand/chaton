@@ -18,5 +18,7 @@
 - install `AutoMapper.Extensions.Microsoft.DependencyInjection` inside the application
 - install `npm i mobx mobx-react-lite` which helps to centralise all react components so as not to go through passing down states to child components
 
+- install `npm i react-router-dom` to implement the react router functionality
+
 
 Removing a package from dotnet `dotnet remove package <package name>`

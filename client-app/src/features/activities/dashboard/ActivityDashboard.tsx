@@ -1,16 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid } from 'semantic-ui-react'
 import ActivityList from './ActivityList';
-import ActivityDetails from '../details/ActivityDetails';
-import ActivityForm from '../form/ActivityForm';
 import { useStore } from '../../../app/stores/Store';
 import { observer } from 'mobx-react-lite';
+import LoadingComponent from '../../../component/layout/LoadingComponent';
 
 
 export default observer( function ActivityDashboard() {
     
+    //***==================== HOOKS ====================*/
     const {activityStore} = useStore();
-    const {selectedActivity, editMode} = activityStore;
+    const {loadActivitiesAction, activityRegistry} = activityStore;
+
+    //***==================== EFFECTS ====================*/
+    useEffect(() => {
+        if (activityRegistry.size <= 1) loadActivitiesAction();
+    }, [activityRegistry.size, loadActivitiesAction]);
+
+
+    //Handling loading functionality when delay response
+    if(activityStore.loadingInitial) return <LoadingComponent content='Loading app' />
 
     return (
         <Grid>
@@ -18,13 +27,7 @@ export default observer( function ActivityDashboard() {
                 <ActivityList />
             </Grid.Column>
             <Grid.Column width="6">
-                {/* this means if the first activity exist, then it can be loaded to the browser */}
-                {selectedActivity && !editMode &&
-                    <ActivityDetails />
-                }
-                {editMode &&
-                    <ActivityForm />
-                }
+                <h3>Filter activities</h3>
             </Grid.Column>
         </Grid>
     )

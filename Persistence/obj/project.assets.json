@@ -3200,11 +3200,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+      "projectUniqueName": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
       "projectName": "Persistence",
-      "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+      "projectPath": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
       "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\obj\\",
+      "outputPath": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",

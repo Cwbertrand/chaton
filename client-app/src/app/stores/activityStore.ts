@@ -14,7 +14,7 @@ export default class ActivityStore {
     selectedActivity: Activity | undefined = undefined;
     editMode = false;
     loading = false;
-    loadingInitial = true;
+    loadingInitial = false;
 
     constructor() {
         makeAutoObservable(this)
@@ -29,12 +29,12 @@ export default class ActivityStore {
 
     //This is creating an action in mobx We do this so as not to worry about binding the classes
     loadActivitiesAction = async () => {
+        this.setLoadingInitial(true);
         //all non-synchronouse codes should be put outside the try and catch block
         try {
             const activities = await agent.Activities.list();
                 activities.forEach(activity => {
-                    activity.date = activity.date.split('T')[0];
-                    this.activityRegistry.set(activity.id, activity);
+                    this.setActivity(activity);
                     //this.activities.push(activity);
                 })
                 this.setLoadingInitial(false);
@@ -44,29 +44,60 @@ export default class ActivityStore {
         }
     }
 
+    // This method loads the activity details when clicked upon
+    loadActivityDetails = async (id: string) => {
+        let activityDetails = this.getActivity(id);
+        if (activityDetails) {
+            this.selectedActivity = activityDetails;
+            return activityDetails;
+        }else{
+            this.setLoadingInitial(true);
+            try {
+                activityDetails = await agent.Activities.details(id);
+                this.setActivity(activityDetails);
+                runInAction(() => this.selectedActivity = activityDetails);
+                this.setLoadingInitial(false);
+                return activityDetails;
+            } catch (error) {
+                console.log(error);
+                this.setLoadingInitial(false);
+            }
+        }
+    }
+
+    private setActivity = (activity: Activity) => {
+        activity.date = activity.date.split('T')[0];
+        this.activityRegistry.set(activity.id, activity);
+    }
+
+    // Getting an id of an activity
+    private getActivity = (id: string) => {
+        return this.activityRegistry.get(id);
+    }
+
     setLoadingInitial = (state: boolean) => {
         this.loadingInitial = state;
     }
 
-    //selecting activity using mobx
-    selectActivity = (id: string) => {
-        this.selectedActivity = this.activityRegistry.get(id);
-        // this.selectedActivity = this.activities.find(a => a.id === id);
-    }
+    // //selecting activity using mobx
+    // selectActivity = (id: string) => {
+    //     this.selectedActivity = this.activityRegistry.get(id);
+    //     // this.selectedActivity = this.activities.find(a => a.id === id);
+    // }
 
-    //Canceling the activity details
-    cancelSelectedActivity = () => {
-        this.selectedActivity = undefined;
-    }
+    // //Canceling the activity details
+    // cancelSelectedActivity = () => {
+    //     this.selectedActivity = undefined;
+    // }
 
-    openForm = (id?: string) => {
-        id ? this.selectActivity(id) : this.cancelSelectedActivity();
-        this.editMode = true;
-    }
+    // openForm = (id?: string) => {
+    //     id ? this.selectActivity(id) : this.cancelSelectedActivity();
+    //     this.editMode = true;
+    // }
 
-    closeForm = () => {
-        this.editMode = false;
-    }
+    // closeForm = () => {
+    //     this.editMode = false;
+    // }
 
     //creating activity
     createActivity = async (activity: Activity) => {
@@ -120,7 +151,7 @@ export default class ActivityStore {
                 this.activityRegistry.delete(id);
                 // this.activities = [...this.activities.filter(a => a.id !== id)];
                 // this is to remove the activity detail once deleted
-                if(this.selectedActivity?.id === id) this.cancelSelectedActivity();
+                //if(this.selectedActivity?.id === id) this.cancelSelectedActivity();
                 this.loading = false;
                 //this.activities.push(activity);
 
