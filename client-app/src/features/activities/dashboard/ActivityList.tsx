@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { SyntheticEvent, useState } from 'react'
 import { Button, Item, Label, Segment } from 'semantic-ui-react';
 import { Activity } from '../../../component/models/Activity';
 
@@ -6,9 +6,17 @@ interface Activities {
     activities: Activity[];
     activityInDetails: (id: string) => void;
     deleteActivity: (id: string) => void;
+    submittingLoader: boolean;
 }
 
-export default function ActivityList({ activities, activityInDetails, deleteActivity}: Activities) {
+export default function ActivityList({ activities, activityInDetails, deleteActivity, submittingLoader}: Activities) {
+    const [targetId, setTargetId] = useState('');
+
+    // This prevents that when you click the delete button, all the buttons shouldn't load
+    function handleDeleteButtonClick(e: SyntheticEvent<HTMLButtonElement>, id: string){
+        setTargetId(e.currentTarget.name);
+        deleteActivity(id);
+    }
 
     return (
         <Segment>
@@ -25,8 +33,9 @@ export default function ActivityList({ activities, activityInDetails, deleteActi
                             <Item.Extra>
                                 <Button onClick={() => activityInDetails(activity.id)} floated='right' content='View' color='blue' />
                                 <Button
-                                    onClick={() => deleteActivity(activity.id)}
                                     name={activity.id}
+                                    loading={submittingLoader && targetId === activity.id}
+                                    onClick={(e) => handleDeleteButtonClick(e, activity.id)}
                                     floated='right'
                                     content='Delete'
                                     color='red'

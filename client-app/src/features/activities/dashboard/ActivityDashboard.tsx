@@ -15,6 +15,7 @@ interface Activities {
     closeForm: () => void;
     createOrEdit: (activity: Activity) => void;
     deleteActivity: (id: string) => void;
+    submittingLoader: boolean;
 }
 
 export default function ActivityDashboard({
@@ -26,11 +27,12 @@ export default function ActivityDashboard({
     openForm,
     closeForm,
     createOrEdit,
-    deleteActivity}: Activities) {
+    deleteActivity,
+    submittingLoader}: Activities) {
     return (
         <Grid>
             <Grid.Column width="10">
-                <ActivityList activities={activities} activityInDetails={activityInDetails} deleteActivity={deleteActivity} />
+                <ActivityList activities={activities} activityInDetails={activityInDetails} deleteActivity={deleteActivity} submittingLoader={submittingLoader} />
             </Grid.Column>
             <Grid.Column width="6">
                 {/* this means if the first activity exist, then it can be loaded to the browser */}
@@ -43,7 +45,7 @@ export default function ActivityDashboard({
                     />
                 }
                 {editMode &&
-                    <ActivityForm closeForm={closeForm} activity={selectedActivity} createOrEdit={createOrEdit} />
+                    <ActivityForm closeForm={closeForm} activity={selectedActivity} createOrEdit={createOrEdit} submittingLoader={submittingLoader} />
                 }
             </Grid.Column>
         </Grid>
