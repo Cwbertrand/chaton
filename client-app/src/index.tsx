@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './component/layout/App';
 import reportWebVitals from './reportWebVitals';
 import { store, StoreContext } from './app/stores/Store';
+import { router } from './app/router/Routes';
+import { RouterProvider } from 'react-router-dom';
 
 ReactDOM.render(
     //This is setting up mobx
     <StoreContext.Provider value={store}>
-        <App />
+        <RouterProvider router={router} />
     </StoreContext.Provider>
     , document.getElementById('root')
 );
