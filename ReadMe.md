@@ -20,5 +20,7 @@
 
 - install `npm i react-router-dom` to implement the react router functionality
 
+-`npm i react-calendar` then `npm i @types/react-calendar` to install a calendar package
+
 
 Removing a package from dotnet `dotnet remove package <package name>`

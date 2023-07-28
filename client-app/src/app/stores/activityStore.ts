@@ -26,6 +26,24 @@ export default class ActivityStore {
         Date.parse(b.date) - Date.parse(a.date) ); 
     }
 
+    // We'll group our activitiesByDate to keys where each date will have an array of activities related
+    // to same dates
+    get groupActivitiesByDate() {
+        return Object.entries(
+            this.activitiesByDate.reduce((activities, activity) => {
+                // This date represents the key for each of the object of activities
+                const date = activity.date;
+
+                // Inside the brackets is the object property accessor.
+                // So we're going to get the property of the activity object that matches the key (date)
+                activities[date] = activities[date] ? [...activities[date], activity] : [activity];
+                return activities;
+
+                // This is an array of objects(activities) and each object has a key(activity.date) and for each date 
+                // is an activity of arrays
+            }, {} as {[key: string]: Activity[]})
+        )}
+
 
     //This is creating an action in mobx We do this so as not to worry about binding the classes
     loadActivitiesAction = async () => {
