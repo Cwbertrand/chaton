@@ -1,23 +1,24 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Icon, Item, Label, Segment } from 'semantic-ui-react'
+import { Button, Icon, Item, Segment } from 'semantic-ui-react'
 import { Activity } from '../../../component/models/Activity';
-import { useStore } from '../../../app/stores/Store';
+//import { useStore } from '../../../app/stores/Store';
+import format from 'date-fns/format';
 
 interface Props {
     activity: Activity
 }
 export default function ActivityListItem({activity}: Props) {
     
-    const {activityStore} = useStore();
-    const {deleteActivity, loading} = activityStore
-    const [targetId, setTargetId] = useState('');
+    //const {activityStore} = useStore();
+    //const {deleteActivity, loading} = activityStore
+    //const [targetId, setTargetId] = useState('');
 
     // This prevents that when you click the delete button, all the buttons shouldn't load
-    function handleDeleteButtonClick(e: SyntheticEvent<HTMLButtonElement>, id: string){
-        setTargetId(e.currentTarget.name);
-        deleteActivity(id);
-    }
+    // function handleDeleteButtonClick(e: SyntheticEvent<HTMLButtonElement>, id: string){
+    //     setTargetId(e.currentTarget.name);
+    //     deleteActivity(id);
+    // }
     return (
         <Segment.Group>
             <Segment>
@@ -33,7 +34,7 @@ export default function ActivityListItem({activity}: Props) {
             </Segment>
             <Segment>
                 <span>
-                    <Icon name="clock" />{activity.date}
+                    <Icon name="clock" />{format(activity.date!, 'dd MMM yyyy h:mm aa')}
                     <Icon name="marker" />{activity.venue}
                 </span>
             </Segment>

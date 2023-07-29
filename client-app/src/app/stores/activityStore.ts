@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction, } from "mobx";
 import { Activity } from "../../component/models/Activity";
 import agent from "../api/agentAxios";
 import { v4 as uuid } from "uuid"; 
+import { format } from "date-fns";
 
 
 export default class ActivityStore {
@@ -23,7 +24,7 @@ export default class ActivityStore {
     //Sorting activities by date
     get activitiesByDate() {
         return Array.from(this.activityRegistry.values()).sort((a, b) =>
-        Date.parse(b.date) - Date.parse(a.date) ); 
+        b.date!.getTime() - a.date!.getTime() ); 
     }
 
     // We'll group our activitiesByDate to keys where each date will have an array of activities related
@@ -32,7 +33,8 @@ export default class ActivityStore {
         return Object.entries(
             this.activitiesByDate.reduce((activities, activity) => {
                 // This date represents the key for each of the object of activities
-                const date = activity.date;
+                // Converting the date to string
+                const date = format(activity.date!, 'dd MMM yyyy');
 
                 // Inside the brackets is the object property accessor.
                 // So we're going to get the property of the activity object that matches the key (date)
@@ -84,7 +86,10 @@ export default class ActivityStore {
     }
 
     private setActivity = (activity: Activity) => {
-        activity.date = activity.date.split('T')[0];
+        //activity.date = activity.date.split('T')[0];
+
+        // making the date to take just the date type of javascript
+        activity.date = new Date(activity.date!);
         this.activityRegistry.set(activity.id, activity);
     }
 
