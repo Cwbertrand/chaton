@@ -1,3 +1,4 @@
+using Application.Core;
 using Domain;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,9 +8,9 @@ namespace Application.Activities
 {
     public class ListActivities
     {
-        public class Query : IRequest<List<Activity>> {}
+        public class Query : IRequest<ResultErrorOrSuccess<List<Activity>>> {}
 
-        public class Handler : IRequestHandler<Query, List<Activity>>
+        public class Handler : IRequestHandler<Query, ResultErrorOrSuccess<List<Activity>>>
         {
 
             // This is what is called dependency injection. Creating an activity endpoint,
@@ -19,9 +20,10 @@ namespace Application.Activities
             {
                 _context = context;
             }
-            public async Task<List<Activity>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<ResultErrorOrSuccess<List<Activity>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Activities.ToListAsync();
+                //return result of type success
+                return ResultErrorOrSuccess<List<Activity>>.Success(await _context.Activities.ToListAsync());
             }
         }
     }

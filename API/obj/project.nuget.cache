@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "u/A+AdpAPTk5Tu73TJbMvKxDudoltLXGIjR4jWHmPZwGdATAiioKNbGzzERTMpSKVLV4J1Iuz04oc1MG4GjI/Q==",
+  "dgSpecHash": "IA6WVSx26DESJBBQXV9WGFDWZglziPZmmZHGYPILrzO7LKnv10SNa6rom4VgkWnIyLqbIoH1Gvsk/TWpwidCLA==",
   "success": true,
   "projectFilePath": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,9 @@
     "C:\\Users\\cwber\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\cwber\\.nuget\\packages\\fluentvalidation\\11.5.1\\fluentvalidation.11.5.1.nupkg.sha512",
+    "C:\\Users\\cwber\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\cwber\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.5.1\\fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

@@ -22,5 +22,11 @@
 
 -`npm i react-calendar` then `npm i @types/react-calendar` to install a calendar package
 
+- Handling error validation through `fluentValidation.AspNetCore` inside the NeGet Gallery, install inside the application app.
 
+- making toast using react toastify `npm i react-toastify`
+
+
+
+droping the database  `dotnet ef database drop -s API -p Persistence`
 Removing a package from dotnet `dotnet remove package <package name>`

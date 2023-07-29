@@ -1,3 +1,4 @@
+using Application.Core;
 using Domain;
 using MediatR;
 using Persistence;
@@ -6,12 +7,14 @@ namespace Application.Activities
 {
     public class DetailActivity
     {
-        public class Query : IRequest<Activity>
+        // this means it's return a resultErrorOrSuccess of type Activity. As we said, 
+        // the <T> is a generic entity like a placeholder, so the activity takes that place
+        public class Query : IRequest<ResultErrorOrSuccess<Activity>> 
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Activity>
+        public class Handler : IRequestHandler<Query, ResultErrorOrSuccess<Activity>>
         {
 
             private readonly ChatOnDbContext _context;
@@ -20,9 +23,10 @@ namespace Application.Activities
                 _context = context;
 
             }
-            public async Task<Activity> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<ResultErrorOrSuccess<Activity>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return await _context.Activities.FindAsync(request.Id);
+                var activity = await _context.Activities.FindAsync(request.Id);
+                return ResultErrorOrSuccess<Activity>.Success(activity);
             }
         }
     }
