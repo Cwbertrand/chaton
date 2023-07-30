@@ -45,6 +45,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -58,6 +62,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.32.1, )"
             }
           },
           "imports": [
@@ -110,8 +118,8 @@
               "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj": {
                 "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj"
               },
-              "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj": {
-                "projectPath": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj"
+              "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -194,6 +202,12 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -214,14 +228,14 @@
         }
       }
     },
-    "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+        "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\obj\\",
+        "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",

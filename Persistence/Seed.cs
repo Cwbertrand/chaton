@@ -1,11 +1,28 @@
 using Domain;
+using Microsoft.AspNetCore.Identity;
 
 namespace Persistence
 {
     public class Seed
     {
-        public static async Task SeedData(ChatOnDbContext context)
+        public static async Task SeedData(ChatOnDbContext context, UserManager<AppUser> userManager)
         {
+            // Seeding users if no user exist in the database
+            if(!userManager.Users.Any()){
+                var users = new List<AppUser>
+                {
+                    new AppUser{DisplayName = "Bob", UserName = "bob", Email = "bob@example.com"},
+                    new AppUser{DisplayName = "Tom", UserName = "tom", Email = "tom@example.com"},
+                    new AppUser{DisplayName = "Jane", UserName = "jane", Email = "jane@example.com"},
+                };
+
+                foreach (var user in users)
+                {
+                    await userManager.CreateAsync(user, "Pa$$w0rd");
+                }
+            }
+            
+
             if (context.Activities.Any()) return;
             
             var activities = new List<Activity>

@@ -33,6 +33,16 @@
 - To resolve the problem that indicates rendering dates as a javascript object instead of a string, try first installing `npm i date-fns@<current version>`. This component is used by react-datepicker
 - To check the files in an npm package, run `npm ls <package name>`.
 
+- Install `Microsoft.AspNetCore.Identity.EntityFrameworkCore` into the Domain application for Identity
+- DTO: Data Transfer Object: info which is transfered to and fro between user and server
+
+## https://jwt.io/ - for creating JWT Tokens
+ 
+## https://jwt.ms/  - Testing what the JWT tokens contain 
+- We'll be using Json token of typ JWT token. We'll have to install `System.IdentityModel.Tokens.Jwt` in the API project which includes support for creating, serializing and validating Json Web Tokens(jwt)
+
+- Install `Microsoft.AspNetCore.Authentication.JwtBearer` in the API project which supports authentication of the JWT token.
+
 
 
 droping the database  `dotnet ef database drop -s API -p Persistence`

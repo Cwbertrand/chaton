@@ -1,10 +1,11 @@
 
 using Domain;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Persistence
 {
-    public class ChatOnDbContext : DbContext
+    public class ChatOnDbContext : IdentityDbContext<AppUser>
     {
         public ChatOnDbContext(DbContextOptions options) : base(options)
         {

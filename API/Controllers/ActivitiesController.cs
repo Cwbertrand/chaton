@@ -1,5 +1,6 @@
 using Application.Activities;
 using Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -13,6 +14,7 @@ namespace API.Controllers
             return HandleResult(await Mediator.Send(new ListActivities.Query()));
         }
 
+        //[Authorize] means the user must be authenticated(signed in) before accessing this endpoint
         [HttpGet("{id}")] //api/activities/{id}
         public async Task<IActionResult> GetActivity(Guid id)
         {
