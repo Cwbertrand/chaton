@@ -34,3 +34,15 @@ C:\Users\cwber\Desktop\ChatOn\Domain\obj\Debug\net7.0\Domain.dll
 C:\Users\cwber\Desktop\ChatOn\Domain\obj\Debug\net7.0\refint\Domain.dll
 C:\Users\cwber\Desktop\ChatOn\Domain\obj\Debug\net7.0\Domain.pdb
 C:\Users\cwber\Desktop\ChatOn\Domain\obj\Debug\net7.0\ref\Domain.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\bin\Debug\net7.0\Domain.deps.json
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\bin\Debug\net7.0\Domain.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\bin\Debug\net7.0\Domain.pdb
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\refint\Domain.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\Domain.pdb
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Domain\obj\Debug\net7.0\ref\Domain.dll

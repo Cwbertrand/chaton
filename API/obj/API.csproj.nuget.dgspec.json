@@ -1,36 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj": {}
+    "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj": {
+    "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj",
+        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj",
+        "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj",
         "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\obj\\",
+        "outputPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.305\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj": {
-                "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj"
+              "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj"
+              },
+              "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
@@ -45,6 +45,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -58,6 +62,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.32.1, )"
             }
           },
           "imports": [
@@ -79,39 +87,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj": {
+    "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj",
+        "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj",
         "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\obj\\",
+        "outputPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj"
+              "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj"
               },
-              "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj": {
-                "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj"
+              "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\Persistence.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\Persistence.csproj"
               }
             }
           }
@@ -129,6 +135,10 @@
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
             },
             "MediatR.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
@@ -151,34 +161,95 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj": {
+    "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj",
+        "projectName": "Infrastructure",
+        "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -206,36 +277,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj": {
+    "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\Persistence.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\Persistence.csproj",
         "projectName": "Persistence",
-        "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+        "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\Persistence.csproj",
         "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\obj\\",
+        "outputPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Domain\\Domain.csproj"
+              "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Domain\\Domain.csproj"
               }
             }
           }
@@ -271,7 +340,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

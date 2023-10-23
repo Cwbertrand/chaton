@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import { Card, Image, Button, Grid } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import { useStore } from '../../../app/stores/Store';
 import LoadingComponent from '../../../component/layout/LoadingComponent';
 import { observer } from 'mobx-react-lite';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ActivityDetailedHeader from './componentActivityDetails/ActivityDetailedHeader';
 import ActivityDetailedInfo from './componentActivityDetails/ActivityDetailedInfo';
 import ActivityDetailedChat from './componentActivityDetails/ActivityDetailedChat';
@@ -31,7 +31,7 @@ export default observer (function ActivityDetails() {
                 <ActivityDetailedChat />
             </Grid.Column>
             <Grid.Column width={6} >
-                <ActivityDetailedSideBar />
+                <ActivityDetailedSideBar activity={activity}/>
             </Grid.Column>
         </Grid>
         // <Card fluid>
