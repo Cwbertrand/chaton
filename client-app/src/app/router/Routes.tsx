@@ -6,6 +6,7 @@ import ActivityDetails from "../../features/activities/details/ActivityDetails";
 import TestErrors from "../../features/errors/TestErrors";
 import NotFound from "../../features/errors/NotFound";
 import ServerError from "../../features/errors/ServerError";
+import LoginForm from "../../features/users/LoginForm";
 
 export const routes: RouteObject[] = [{
     path: '/',
@@ -15,6 +16,7 @@ export const routes: RouteObject[] = [{
         {path:  'activities/:id', element: <ActivityDetails />},
         {path:  'createActivity', element: <ActivityForm key='create' />},
         {path:  'edit/:id', element: <ActivityForm key='edit' />},
+        {path:  'login', element: <LoginForm key='login' />},
         {path:  'errors', element: <TestErrors />},
         {path:  'not-found', element: <NotFound />},
         // the * implies that whenever a client makes a mistake and types a wrong url

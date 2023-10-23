@@ -1,7 +1,9 @@
 using Application.Core;
+using Application.Interface;
 using Domain;
 using FluentValidation;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Activities
@@ -25,14 +27,30 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Command, ResultErrorOrSuccess<Unit>>
         {
             private readonly ChatOnDbContext _context;
-            public Handler(ChatOnDbContext context)
+            private readonly IUserAccessor _userAccessor;
+            public Handler(ChatOnDbContext context, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _context = context;
             }
             
             public async Task<ResultErrorOrSuccess<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
                 _context.Activities.Add(request.Activity);
+
+                // Getting the user creating the activity and the activity and setting
+                // both the user and the activity to the ActivityAttendee object
+                var user = await _context.Users.FirstOrDefaultAsync(x => 
+                    x.UserName == _userAccessor.GetUserName());
+
+                var attendee = new ActivityAttendee()
+                {
+                    AppUser = user,
+                    Activity = request.Activity,
+                    IsHost = true
+                };
+
+                request.Activity.Attendees.Add(attendee);
 
                 // SavechangesAsync returns an integer
                 var result = await _context.SaveChangesAsync() > 0;

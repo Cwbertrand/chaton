@@ -1482,6 +1482,19 @@
           "bin/placeholder/Domain.dll": {}
         }
       },
+      "Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.dll": {}
+        }
+      },
       "Persistence/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
@@ -4399,6 +4412,11 @@
       "path": "../Domain/Domain.csproj",
       "msbuildProject": "../Domain/Domain.csproj"
     },
+    "Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Infrastructure/Infrastructure.csproj",
+      "msbuildProject": "../Infrastructure/Infrastructure.csproj"
+    },
     "Persistence/1.0.0": {
       "type": "project",
       "path": "../Persistence/Persistence.csproj",
@@ -4408,6 +4426,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Application >= 1.0.0",
+      "Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.9",
       "Microsoft.AspNetCore.OpenApi >= 7.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.8",
@@ -4421,30 +4440,30 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj",
+      "projectUniqueName": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj",
+      "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj",
       "packagesPath": "C:\\Users\\cwber\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\obj\\",
+      "outputPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\cwber\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.305\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Application\\Application.csproj"
+            "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Application\\Application.csproj"
+            },
+            "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Infrastructure\\Infrastructure.csproj"
             }
           }
         }
@@ -4501,7 +4520,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.305\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

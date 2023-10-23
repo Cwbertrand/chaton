@@ -43,3 +43,18 @@ C:\Users\cwber\Desktop\ChatOn\Persistence\obj\Debug\net7.0\Persistence.dll
 C:\Users\cwber\Desktop\ChatOn\Persistence\obj\Debug\net7.0\refint\Persistence.dll
 C:\Users\cwber\Desktop\ChatOn\Persistence\obj\Debug\net7.0\Persistence.pdb
 c:\Users\cwber\Desktop\ChatOn\Persistence\obj\Debug\net7.0\ref\Persistence.dll
+c:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\bin\Debug\net7.0\Persistence.deps.json
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\bin\Debug\net7.0\Persistence.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\bin\Debug\net7.0\Persistence.pdb
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\bin\Debug\net7.0\Domain.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\bin\Debug\net7.0\Domain.pdb
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.csproj.AssemblyReference.cache
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.AssemblyInfoInputs.cache
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.AssemblyInfo.cs
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.csproj.CoreCompileInputs.cache
+c:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.csproj.CopyComplete
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\refint\Persistence.dll
+C:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\Persistence.pdb
+c:\Users\cwber\Desktop\personal work\csharp projects\ChatOn\Persistence\obj\Debug\net7.0\ref\Persistence.dll

@@ -1,6 +1,10 @@
+using Activities.DTOs;
 using Application.Core;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Activities
@@ -9,24 +13,29 @@ namespace Application.Activities
     {
         // this means it's return a resultErrorOrSuccess of type Activity. As we said, 
         // the <T> is a generic entity like a placeholder, so the activity takes that place
-        public class Query : IRequest<ResultErrorOrSuccess<Activity>> 
+        public class Query : IRequest<ResultErrorOrSuccess<ActivityDto>> 
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, ResultErrorOrSuccess<Activity>>
+        public class Handler : IRequestHandler<Query, ResultErrorOrSuccess<ActivityDto>>
         {
+            private readonly IMapper _mapper;
 
             private readonly ChatOnDbContext _context;
-            public Handler(ChatOnDbContext context)
+            public Handler(ChatOnDbContext context, IMapper mapper)
             {
+                _mapper = mapper;
                 _context = context;
 
             }
-            public async Task<ResultErrorOrSuccess<Activity>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<ResultErrorOrSuccess<ActivityDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var activity = await _context.Activities.FindAsync(request.Id);
-                return ResultErrorOrSuccess<Activity>.Success(activity);
+                var activity = await _context.Activities
+                    .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
+                    .FirstOrDefaultAsync(x => x.Id == request.Id);
+
+                return ResultErrorOrSuccess<ActivityDto>.Success(activity);
             }
         }
     }

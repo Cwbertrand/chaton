@@ -14,9 +14,9 @@ export default observer (function ActivityList() {
             {groupActivitiesByDate.map(([group, activities]) => (
                 <Fragment key={group}>
                     <Header sub color='teal'>{group}</Header>
-                        {activities.map(activity => (
-                            <ActivityListItem activity={activity} key={activity.id} />
-                        ))}
+                    {activities.map(activity => (
+                        <ActivityListItem activity={activity} key={activity.id} />
+                    ))}
                 </Fragment>
             ))}
         </>

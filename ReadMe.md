@@ -45,5 +45,9 @@
 
 
 
-droping the database  `dotnet ef database drop -s API -p Persistence`
+droping the database  `dotnet ef database drop -s API -p Persistence` where -s stands for `switch` and -p for `project`
 Removing a package from dotnet `dotnet remove package <package name>`
+- to create a new class library `dotnet new classlib -n Infrastructure` where -n stands for `name`
+- add the newly created class library to the project solution `dotnet sln add Infrastructure`
+- To be able to reference a project inside another project like to reference Infrastructure project inside Application project `dotnet add reference ../Application`
+- Dropping a database `dotnet ef database drop -p Persistence -s API`

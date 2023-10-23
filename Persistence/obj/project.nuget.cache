@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5a8+K4DDWYhLMEk77KbPKP+hOxN63g9sz07NmuZU799NB8U9iKMCY+tUbV5bYUED0fk/eYnNQimXh/CogJyy8g==",
+  "dgSpecHash": "P5OJgoPi/oriiPbg7p3jUBdqUYJSBGF0wGvH3dlHJWXvJmNzCHCW82wG4VmwBeed2Fr5NOu/J+LGtwlrKnWJOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\cwber\\Desktop\\ChatOn\\Persistence\\Persistence.csproj",
+  "projectFilePath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cwber\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

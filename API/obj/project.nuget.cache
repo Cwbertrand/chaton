@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RGkjNpKs8JvoawnwkpQWtelO/nfxWB4QrTUQq2e1nqBSBVStF5gwkyxo4kw8hSYlKcEBERD9/GheDpETO1638Q==",
+  "dgSpecHash": "JWVUTkNIP6Tw8cRUtOdu1RORgbGNJTZLCo3IfrdDzagf+XBJr8H+Ec8RhiXmcozkbFVLKYBygKElIlzY8riPkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\cwber\\Desktop\\ChatOn\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\cwber\\Desktop\\personal work\\csharp projects\\ChatOn\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cwber\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\cwber\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

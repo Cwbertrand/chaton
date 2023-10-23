@@ -20,7 +20,7 @@ export default observer( function ActivityDashboard() {
 
 
     //Handling loading functionality when delay response
-    if(activityStore.loadingInitial) return <LoadingComponent content='Loading app' />
+    if(activityStore.loadingInitial) return <LoadingComponent content='Loading activities...' />
 
     return (
         <Grid>

@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 
 import { useStore } from '../../../app/stores/Store';
-import { Activity } from '../../../component/models/Activity';
+import { ActivityFormValues } from '../../../component/models/Activity';
 import LoadingComponent from '../../../component/layout/LoadingComponent';
 import MyTextInputValidation from '../../../app/common/form/MyTextInputValidation';
 import MyTextAreaValidation from '../../../app/common/form/MyTextAreaValidation ';
@@ -19,7 +19,7 @@ import MyDateValidation from '../../../app/common/form/MyDateValidation';
 export default observer (function ActivityForm() {
 
     const {activityStore} = useStore();
-    const {createActivity, updatingActivity, loading, 
+    const {createActivity, updatingActivity, 
         loadActivityDetails, loadingInitial} = activityStore;
     const {id} = useParams();
     // Navigate helps the user to redirect
@@ -27,15 +27,7 @@ export default observer (function ActivityForm() {
 
     //the initialstate will be either the selected activity or a new activity we want to create.
     // if the activity is null (??) then we'll create new data for the ids
-    const [activity, setActivity] = useState<Activity>({
-        id: '',
-        title: '',
-        description: '',
-        category: '',
-        date: null,
-        city: '',
-        venue: '',
-    });
+    const [activity, setActivity] = useState<ActivityFormValues>(new ActivityFormValues());
 
     // Form validation using the formik and yuup library
     const validationSchema = Yup.object({
@@ -49,10 +41,10 @@ export default observer (function ActivityForm() {
 
     // We'll add a useEffect so it does something when the activity loads
     useEffect(() => {
-        if(id) loadActivityDetails(id).then(activity => setActivity(activity!));
+        if(id) loadActivityDetails(id).then(activity => setActivity(new ActivityFormValues(activity)));
     }, [id, loadActivityDetails]);
 
-    function handleFormSubmit(activity: Activity) {
+    function handleFormSubmit(activity: ActivityFormValues) {
         if (!activity.id){
             activity.id = uuid();
             createActivity(activity).then(() => navigate(`/activities/${activity.id}`))
@@ -94,7 +86,7 @@ export default observer (function ActivityForm() {
                         <MyTextInputValidation placeholder="Venue" name='venue' />
                         <Button 
                             disabled={isSubmitting || !dirty || !isValid}
-                            loading={loading}  floated='right' 
+                            loading={isSubmitting}  floated='right' 
                             positive type="submit" content="Submit" 
                         />
                         <Button as={Link} to='/activities' floated='right' type='button' content="Cancel" />
