@@ -30,7 +30,7 @@ namespace API.Controllers
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Image = null,
+                Image = user?.Photos?.FirstOrDefault(x => x.IsMain)?.Url,
                 Token = _tokenService.CreateToken(user),
                 UserName = user.UserName,
             };
@@ -42,7 +42,11 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             //getting user by email
-            var user = await _userManager.FindByEmailAsync(loginDto.Email);
+            //var user = await _userManager.FindByEmailAsync(loginDto.Email);
+
+            // Getting the user in session and the photo
+            var user = await _userManager.Users.Include(p => p.Photos)
+                .FirstOrDefaultAsync(x => x.Email == loginDto.Email);
 
             // if user doesn't exit
             if(user == null) return Unauthorized();
@@ -97,7 +101,12 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
             //Getting the user's email
-            var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+            //var user = await _userManager.FindByEmailAsync(User.FindFirstValue(ClaimTypes.Email));
+
+            //Getting the user with the photo
+            var user = await _userManager.Users
+                .Include(p => p.Photos)
+                .FirstOrDefaultAsync(x => x.Email == User.FindFirstValue(ClaimTypes.Email));
 
             return CreateUserObject(user);
         }
