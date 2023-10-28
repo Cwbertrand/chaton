@@ -32,7 +32,7 @@ namespace API.Controllers
                 DisplayName = user.DisplayName,
                 Image = user?.Photos?.FirstOrDefault(x => x.IsMain)?.Url,
                 Token = _tokenService.CreateToken(user),
-                UserName = user.UserName,
+                Username = user.UserName,
             };
         }
 
@@ -67,7 +67,7 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             // This is to check if the username in the db is same with the one the new user has entered 
-            if(await _userManager.Users.AnyAsync(x => x.UserName == registerDto.UserName))
+            if(await _userManager.Users.AnyAsync(x => x.UserName == registerDto.Username))
             {
                 return BadRequest("Username is already taken");
             }
@@ -81,7 +81,7 @@ namespace API.Controllers
             {
                 DisplayName = registerDto.DisplayName,
                 Email = registerDto.Email,
-                UserName = registerDto.UserName,
+                UserName = registerDto.Username,
             };
 
             // Creating the new user

@@ -20,7 +20,7 @@ namespace Application.Core
                 
             CreateMap<ActivityAttendee, AttendeeDto>()
                 .ForMember(d => d.DisplayName, opt => opt.MapFrom(s => s.AppUser.DisplayName))
-                .ForMember(d => d.UserName, opt => opt.MapFrom(s => s.AppUser.UserName))
+                .ForMember(d => d.Username, opt => opt.MapFrom(s => s.AppUser.UserName))
                 .ForMember(d => d.Bio, opt => opt.MapFrom(s => s.AppUser.Biography))
                 .ForMember(d => d.Image, o => o.MapFrom(s => s.AppUser.Photos.FirstOrDefault(x => x.IsMain).Url));
                 
