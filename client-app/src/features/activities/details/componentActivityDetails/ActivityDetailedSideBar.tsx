@@ -9,7 +9,6 @@ interface Props {
 }
 export default observer(function ActivityDetailedSidebar ({activity : { attendees, host}}: Props) {
     if (!attendees) return null;
-    console.log(attendees);
     return (
         <>
             <Segment

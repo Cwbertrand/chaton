@@ -28,6 +28,8 @@
 
 - Using formik to create and make form validation in react `npm install formik --save` and also install `npm install yup --save`
 
+- Installing signalR for react is `npm install @microsoft/signalr`
+
 - implementing date functionality we use this package `npm install react-datepicker` and for typescript-eslint add `npm install @types/react-datepicker --save-dev`
 
 - To resolve the problem that indicates rendering dates as a javascript object instead of a string, try first installing `npm i date-fns@<current version>`. This component is used by react-datepicker

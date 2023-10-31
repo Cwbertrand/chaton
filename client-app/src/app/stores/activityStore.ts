@@ -254,5 +254,10 @@ export default class ActivityStore {
             runInAction(() => this.loading = false);
         }
     }
+
+    // Clearing activity after you've left an activity detail page so as not to encounter an error with the websocket
+    clearSelectedActivity = () => {
+        this.selectedActivity = undefined;
+    }
 }
 

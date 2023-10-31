@@ -1,5 +1,6 @@
 using Activities.DTOs;
 using Application.Activities;
+using Application.Comments;
 using AutoMapper;
 using Domain;
 
@@ -27,6 +28,12 @@ namespace Application.Core
             //Mapping through the user's photos to get the main profile picture
             CreateMap<AppUser, Profiles.Profile>()
                 .ForMember(d => d.Image, o => o.MapFrom(s => s.Photos.FirstOrDefault(x => x.IsMain).Url));
+
+            // Mapping through the comments properties which have relations with the app user to get the user's information
+            CreateMap<Comment, CommentDto>()
+                .ForMember(d => d.DisplayName, opt => opt.MapFrom(s => s.User.DisplayName))
+                .ForMember(d => d.Username, opt => opt.MapFrom(s => s.User.UserName))
+                .ForMember(d => d.Image, o => o.MapFrom(s => s.User.Photos.FirstOrDefault(x => x.IsMain).Url));
 
 
         }
