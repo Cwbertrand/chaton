@@ -1,5 +1,6 @@
 using Activities.DTOs;
 using Application.Core;
+using Application.Interface;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Domain;
@@ -16,12 +17,14 @@ namespace Application.Activities
         public class Handler : IRequestHandler<Query, ResultErrorOrSuccess<List<ActivityDto>>>
         {
             private readonly IMapper _mapper;
+            private readonly IUserAccessor _userAccessor;
 
             // This is what is called dependency injection. Creating an activity endpoint,
             // we have to query the activity content
             private readonly ChatOnDbContext _context;
-            public Handler(ChatOnDbContext context, IMapper mapper)
+            public Handler(ChatOnDbContext context, IMapper mapper, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _mapper = mapper;
                 _context = context;
             }
@@ -36,7 +39,8 @@ namespace Application.Activities
                         //OR
 
                 var activities = await _context.Activities
-                    .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider)
+                    .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider, 
+                            new {currentUsername = _userAccessor.GetUserName()})
                     .ToListAsync(cancellationToken);
                 //return result of type success
                 return ResultErrorOrSuccess<List<ActivityDto>>.Success(activities);

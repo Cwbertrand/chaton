@@ -259,5 +259,22 @@ export default class ActivityStore {
     clearSelectedActivity = () => {
         this.selectedActivity = undefined;
     }
+
+    // Updating the attendee following status
+    updateAttendeeFollowing = (username: string) => {
+        // Because activity is an array, we loop through it to get the attendee key
+        this.activityRegistry.forEach(activity => {
+            // Given to that attendee is an array also, we loop through it
+            activity.attendees?.forEach(attendee => {
+                // if the name of the attendee is same with the person in session, execute
+                if (attendee.username === username) {
+                    // if the person in session is following(exist), then decrement it as he/she clicks the button, if not increment
+                    // This will update the following status of the attendees within each activity
+                    attendee.following ? attendee.followersCount-- : attendee.followersCount++;
+                    attendee.following = !attendee.following;
+                }
+            })
+        })
+    }
 }
 

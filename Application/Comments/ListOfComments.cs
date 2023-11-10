@@ -1,4 +1,5 @@
 using Application.Core;
+using Application.Interface;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -18,8 +19,10 @@ namespace Application.Comments
         {
             private readonly ChatOnDbContext _context;
             private readonly IMapper _mapper;
-            public Handler(ChatOnDbContext context, IMapper mapper)
+            private readonly IUserAccessor _userAccessor;
+            public Handler(ChatOnDbContext context, IMapper mapper, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _mapper = mapper;
                 _context = context;
             }
@@ -29,7 +32,8 @@ namespace Application.Comments
                 var comments = await _context.Comments
                     .Where(x => x.Activity.Id == request.ActivityId)
                     .OrderByDescending(x => x.CreatedAt)
-                    .ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
+                    .ProjectTo<CommentDto>(_mapper.ConfigurationProvider, 
+                            new {currentUsername = _userAccessor.GetUserName()})
                     .ToListAsync();
 
                 return ResultErrorOrSuccess<List<CommentDto>>.Success(comments);

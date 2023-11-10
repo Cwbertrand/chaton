@@ -10,5 +10,6 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new Detatils.Query{UserName = username}));
         }
+
     }
 }

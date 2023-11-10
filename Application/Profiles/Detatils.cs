@@ -1,4 +1,5 @@
 using Application.Core;
+using Application.Interface;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
@@ -19,8 +20,10 @@ namespace Application.Profiles
         {
             private readonly IMapper _mapper;
             private readonly ChatOnDbContext _context;
-            public Handler(ChatOnDbContext context, IMapper mapper)
+            private readonly IUserAccessor _userAccessor;
+            public Handler(ChatOnDbContext context, IMapper mapper, IUserAccessor userAccessor)
             {
+                _userAccessor = userAccessor;
                 _context = context;
                 _mapper = mapper;
             }
@@ -28,7 +31,8 @@ namespace Application.Profiles
             public async Task<ResultErrorOrSuccess<Profile>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users
-                    .ProjectTo<Profile>(_mapper.ConfigurationProvider)
+                    .ProjectTo<Profile>(_mapper.ConfigurationProvider, 
+                            new {currentUsername = _userAccessor.GetUserName()})
                     .SingleOrDefaultAsync(x => x.Username == request.UserName);
 
                 return ResultErrorOrSuccess<Profile>.Success(user);

@@ -8,5 +8,11 @@ namespace Domain
         public string Biography { get; set; }
         public ICollection<ActivityAttendee> Activities { get; set; }
         public ICollection<Photo> Photos { get; set; }
+
+        // the user following another users
+        public ICollection<UserFollowing> Followings { get; set; }
+
+        // The followers of the user
+        public ICollection<UserFollowing> Followers { get; set; }
     }
 }
