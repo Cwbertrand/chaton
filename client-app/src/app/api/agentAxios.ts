@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { router } from '../router/Routes';
 import { store } from '../stores/Store';
 import { User, UserFormValues } from '../../component/models/user';
+import { Photo, Profile } from '../../component/models/profile';
 
 //making a loader function while waiting the response from axios
 const sleep = (delay: number) => {
@@ -104,9 +105,29 @@ const Account = {
     register: (user: UserFormValues) => requests.post<User>('/account/register', user),
 }
 
+const Profiles = {
+    getProfile: (username: string) => requests.get<Profile>(`/profile/${username}`),
+    // Getting form data and sending it to the api
+    uploadPhoto: (file: Blob) => {
+        let formData = new FormData();
+        formData.append('File', file);
+        return axios.post<Photo>('photos', formData, {
+            headers: {'Content-type': 'mulitpart/form-data'},
+        })
+    },
+    setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
+    deletePhoto: (id: string) => requests.del(`/photos/${id}`),
+    updateFollowing: (username: string) => requests.post(`/follow/${username}`, {}),
+    listFollowing: (username: string, predicate: string) => requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`),
+    //TODO: not used yet
+    updateProfile: (profile: Partial<Profile>) => requests.put(`/profile`, profile),
+
+}
+
 const agent = {
     Activities,
-    Account
+    Account,
+    Profiles,
 }
 
 export default agent;

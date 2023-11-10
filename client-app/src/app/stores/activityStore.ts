@@ -93,10 +93,10 @@ export default class ActivityStore {
         const user = store.userStore.user;
         if(user){
             activity.isGoing = activity.attendees!.some(
-                a => a.userName === user.userName
+                a => a.username === user.username
             )
-            activity.isHost = activity.hostUserName === user.userName;
-            activity.host = activity.attendees?.find(x => x.userName === activity.hostUserName);
+            activity.isHost = activity.hostUserName === user.username;
+            activity.host = activity.attendees?.find(x => x.username === activity.hostUserName);
         }
         //activity.date = activity.date.split('T')[0];
 
@@ -143,7 +143,7 @@ export default class ActivityStore {
         try {
             await agent.Activities.create(activity);
             const newActivity = new Activity(activity);
-            newActivity.hostUserName = user!.userName;
+            newActivity.hostUserName = user!.username;
             newActivity.attendees = [attendee];
             this.setActivity(newActivity);
             runInAction(() => {
@@ -221,7 +221,7 @@ export default class ActivityStore {
                 if (this.selectedActivity?.isGoing) {
                     // if the user is already an attendee, the user can cancel his/her attendance
                     this.selectedActivity.attendees = this.selectedActivity?.attendees?.filter(a =>
-                            a.userName !== user?.userName
+                            a.username !== user?.username
                         )
                     this.selectedActivity.isGoing = false;
                 }else {
@@ -253,6 +253,28 @@ export default class ActivityStore {
         } finally {
             runInAction(() => this.loading = false);
         }
+    }
+
+    // Clearing activity after you've left an activity detail page so as not to encounter an error with the websocket
+    clearSelectedActivity = () => {
+        this.selectedActivity = undefined;
+    }
+
+    // Updating the attendee following status
+    updateAttendeeFollowing = (username: string) => {
+        // Because activity is an array, we loop through it to get the attendee key
+        this.activityRegistry.forEach(activity => {
+            // Given to that attendee is an array also, we loop through it
+            activity.attendees?.forEach(attendee => {
+                // if the name of the attendee is same with the person in session, execute
+                if (attendee.username === username) {
+                    // if the person in session is following(exist), then decrement it as he/she clicks the button, if not increment
+                    // This will update the following status of the attendees within each activity
+                    attendee.following ? attendee.followersCount-- : attendee.followersCount++;
+                    attendee.following = !attendee.following;
+                }
+            })
+        })
     }
 }
 

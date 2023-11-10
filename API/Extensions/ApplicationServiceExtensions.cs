@@ -3,6 +3,7 @@ using Application.Core;
 using Application.Interface;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Photos;
 using Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +32,11 @@ namespace API.Extensions
                 opt.AddPolicy("CorsPolicy", policy =>
                 {
                     //this allows any method like get or post and any header also
-                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
+                    policy
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .WithOrigins("http://localhost:3000");
                 });
             });
 
@@ -43,6 +48,15 @@ namespace API.Extensions
             // this enables use to use the httpContext inside our infrastructure project
             services.AddHttpContextAccessor();
             services.AddScoped<IUserAccessor, UserAccessor>();
+
+            //Cloudinary services
+            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
+            services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
+
+            // signalR
+            services.AddSignalR(e => {
+                e.MaximumReceiveMessageSize = 102400000;
+            });
 
 
             return services;
