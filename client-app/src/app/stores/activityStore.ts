@@ -1,4 +1,5 @@
-import { makeAutoObservable, runInAction, } from "mobx";
+import { Pagination, PagingParams } from './../../component/models/pagination';
+import { makeAutoObservable, reaction, runInAction, } from "mobx";
 import { Activity, ActivityFormValues } from "../../component/models/Activity";
 import agent from "../api/agentAxios";
 import { v4 as uuid } from "uuid"; 
@@ -18,9 +19,67 @@ export default class ActivityStore {
     editMode = false;
     loading = false;
     loadingInitial = false;
+    pagination: Pagination | null = null;
+    pagingParams = new PagingParams();
+    predicate = new Map().set('all', true);
 
     constructor() {
         makeAutoObservable(this)
+
+        reaction(
+            () => this.predicate.keys(),
+            () => {
+                this.pagingParams = new PagingParams();
+                this.activityRegistry.clear();
+                this.loadActivitiesAction();
+            }
+        )
+    }
+
+
+    setPagingParams = (pagingParams: PagingParams) => {
+        this.pagingParams = pagingParams;
+    }
+
+    setPredicate = (predicate: string, value: string | Date) => {
+        const resetPredicate = () => {
+            this.predicate.forEach((value, key) => {
+                if (key !== 'startDate') this.predicate.delete(key);
+            })
+        }
+        switch (predicate) {
+            case 'all':
+                resetPredicate();
+                this.predicate.set('all', true);
+                break;
+            case 'isGoing':
+                resetPredicate();
+                this.predicate.set('isGoing', true);
+                break;
+            case 'isHost':
+                resetPredicate();
+                this.predicate.set('isHost', true);
+                break;
+            case 'startDate':
+                this.predicate.delete('startDate');
+                this.predicate.set('startDate', value);
+        }
+    }
+
+    // Appending parameters to the list so that it gives a paginated result
+    get axiosParams() {
+        const params = new URLSearchParams();
+        params.append('pageNumber', this.pagingParams.pageNumber.toString());
+        params.append('pageSize', this.pagingParams.pageSize.toString());
+
+        //Checking what's inside the predicate and looping through the keys to get the values
+        this.predicate.forEach((value, key) => {
+            //since it's not a Json object but a string, we need the to convert it to a string
+            if (key === 'startDate') {
+                params.append(key, (value as Date).toISOString());
+            }
+        })
+        return params;
     }
 
     //Sorting activities by date
@@ -54,16 +113,21 @@ export default class ActivityStore {
         this.setLoadingInitial(true);
         //all non-synchronouse codes should be put outside the try and catch block
         try {
-            const activities = await agent.Activities.list();
-                activities.forEach(activity => {
+            const result = await agent.Activities.list(this.axiosParams);
+                result.data.forEach(activity => {
                     this.setActivity(activity);
                     //this.activities.push(activity);
                 })
+                this.setPagination(result.patination);
                 this.setLoadingInitial(false);
         } catch (error) {
             console.log(error);
                 this.setLoadingInitial(false);
         }
+    }
+
+    setPagination = (pagination: Pagination) => {
+        this.pagination = pagination;
     }
 
     // This method loads the activity details when clicked upon

@@ -5,7 +5,7 @@ import { Container } from 'semantic-ui-react';
 
 import './style.css';
 import NavBar from './NavBar';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
 import { ToastContainer } from 'react-toastify';
 import { useStore } from '../../app/stores/Store';
@@ -30,6 +30,7 @@ function App() {
   if(!commonStore.appLoaded) return <LoadingComponent content='Loading app...' />
   return (
     <>
+    <ScrollRestoration />
       <ModalContainer />
       <ToastContainer position='bottom-right' hideProgressBar theme='colored' />
       {location.pathname === '/' ? <HomePage /> :

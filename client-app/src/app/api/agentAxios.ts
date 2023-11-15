@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import { router } from '../router/Routes';
 import { store } from '../stores/Store';
 import { User, UserFormValues } from '../../component/models/user';
-import { Photo, Profile } from '../../component/models/profile';
+import { Photo, Profile, UserActivity } from '../../component/models/profile';
+import { PaginatedResult } from '../../component/models/pagination';
 
 //making a loader function while waiting the response from axios
 const sleep = (delay: number) => {
@@ -14,12 +15,17 @@ const sleep = (delay: number) => {
 }
 
 //creating a base url endpoint
-axios.defaults.baseURL = 'http://localhost:5000/api';
+axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 //using axios interceptors, we can set the timeout
 // this handles the various error status codes
 axios.interceptors.response.use(async response => {
-        await sleep(1000);
+        if (import.meta.env.DEV) await sleep(1000);
+        const pagination = response.headers['pagination'];
+        if(pagination) {
+            response.data = new PaginatedResult(response.data, JSON.parse(pagination));
+            return response as AxiosResponse<PaginatedResult<any>>
+        }
         return response;
 }, (error: AxiosError) => {
     const {data, status, config} = error.response as AxiosResponse; //response! this means we are overriding the error from typescript
@@ -91,7 +97,7 @@ const requests = {
 const Activities = {
     //getting list of activities
     //this will be returning void for create, update and delete
-    list: () => requests.get<Activity[]>('/activities'),
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Activity[]>>('/activities', {params}).then(responseData),
     details: (id: string) => requests.get<Activity>(`/activities/${id}`),
     create: (activity: ActivityFormValues) => requests.post<void>('/activities', activity),
     update: (activity: ActivityFormValues) => requests.put<void>(`/activities/${activity.id}`, activity),
@@ -121,6 +127,8 @@ const Profiles = {
     listFollowing: (username: string, predicate: string) => requests.get<Profile[]>(`/follow/${username}?predicate=${predicate}`),
     //TODO: not used yet
     updateProfile: (profile: Partial<Profile>) => requests.put(`/profile`, profile),
+    listActivities: (username: string, predicate: string) =>
+        requests.get<UserActivity[]>(`/profile/${username}/activities?predicate=${predicate}`)
 
 }
 

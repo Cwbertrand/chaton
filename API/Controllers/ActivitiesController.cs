@@ -10,9 +10,9 @@ namespace API.Controllers
     {
 
         [HttpGet] //api/activities
-        public async Task<IActionResult> GetActivities()
+        public async Task<IActionResult> GetActivities([FromQuery]ActivityFilterParams param)
         {
-            return HandleResult(await Mediator.Send(new ListActivities.Query()));
+            return HandlePaginatedResult(await Mediator.Send(new ListActivities.Query{Params = param}));
         }
 
         //[Authorize] means the user must be authenticated(signed in) before accessing this endpoint
@@ -63,6 +63,5 @@ namespace API.Controllers
         {
             return HandleResult(await Mediator.Send(new UpdateAttendance.Command{Id = id}));
         }
-
     }
 }

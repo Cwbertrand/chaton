@@ -1,3 +1,4 @@
+using API.Extensions;
 using Application.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,24 @@ namespace API.Controllers
             
             if (result.IsSuccess && result.Value != null)
                 return Ok(result.Value);
+
+            if (result == null) return NotFound();
+            
+            if(result.IsSuccess && result.Value == null)
+                return NotFound();
+            
+            return BadRequest(result.Error);
+        }
+
+        //If the result is a paginated result like a list
+        protected ActionResult HandlePaginatedResult<T>(ResultErrorOrSuccess<PagedList<T>> result){
+            
+            if (result.IsSuccess && result.Value != null)
+            {
+                Response.AddPaginationHeader(result.Value.CurrentPage, result.Value.PageSize, 
+                    result.Value.TotalPagesCount, result.Value.TotalPages);
+                    return Ok(result.Value);
+            }
 
             if (result == null) return NotFound();
             
